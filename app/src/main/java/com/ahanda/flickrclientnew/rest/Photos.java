@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Photos implements Serializable {
 
     @Expose
@@ -24,5 +27,5 @@ public class Photos implements Serializable {
     @SerializedName("total")
     private Integer total;
 
-    public List<Photo> photoList = null;
+    public List<Photo> photo = null;
 }
