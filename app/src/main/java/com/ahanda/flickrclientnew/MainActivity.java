@@ -16,8 +16,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 public class MainActivity extends AppCompatActivity {
 
-    FlickrResponse response;
-    FlickrCallback callback = new FlickrCallback();
+    FlickrCallback callback;
 
 
     @Override
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         service.getRecentPhotos().enqueue(callback);
 
-        EventBus.getDefault().register(this);
+//        EventBus.getDefault().register(this);
 
     }
 
@@ -60,18 +59,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    @Subscribe
-    public void getResponse(FlickResponseEvent flickResponseEvent) {
-        FlickrResponse flickrResponse = flickResponseEvent.getFlickrResponse();
-
-
-        ImageView imageView = findViewById(R.id.imageView);
-
-        try {
-            Picasso.get().load(flickrResponse.photos.photoList.get(0).urls).into(imageView);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
+//    @Subscribe
+//    public void getResponse(FlickResponseEvent flickResponseEvent) {
+//        FlickrResponse flickrResponse = flickResponseEvent.getFlickrResponse();
+//
+//
+//        ImageView imageView = findViewById(R.id.imageView);
+//
+//        try {
+//            Picasso.get().load(flickrResponse.photos.photoList.get(0).urls).into(imageView);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 }

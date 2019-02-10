@@ -25,7 +25,12 @@ public class FlickrCallback implements Callback<FlickrResponse> {
     public void onResponse(Call<FlickrResponse> call, Response<FlickrResponse> response) {
         Log.d("Flickr", "Successfully connected");
 
-        EventBus.getDefault().post(new FlickResponseEvent(response.body()));
+        int count = response.body().photos.getPhoto().size();
+
+
+        System.out.println();
+
+//        EventBus.getDefault().post(new FlickResponseEvent(response.body()));
 
     }
 
