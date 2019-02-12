@@ -38,13 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-
-
     @Subscribe
     public void getResponse(FlickResponseEvent flickResponseEvent) {
         FlickrResponse flickrResponse = flickResponseEvent.getFlickrResponse();
