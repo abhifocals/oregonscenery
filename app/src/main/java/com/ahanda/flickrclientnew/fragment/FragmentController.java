@@ -29,39 +29,33 @@ public class FragmentController extends Fragment {
     PhotoAdapter photoAdapter;
 
 
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-
-
+        // Fetching Photos
         FlickrService service = RetrofitBuilder.newInstance().create(FlickrService.class);
         callback = new FlickrCallback();
-
         service.getRecentPhotos().enqueue(callback);
 
+        // Registering class for EventBus
         EventBus.getDefault().register(this);
 
-
-        return inflater.inflate(R.layout.recycler_fragment, container);
-
+        return inflater.inflate(R.layout.recycler_fragment, container, false);
     }
 
     @Subscribe
     public void getResponse(FlickResponseEvent flickResponseEvent) {
         FlickrResponse flickrResponse = flickResponseEvent.getFlickrResponse();
 
-
         // Set-up recycler view
         photoAdapter = new PhotoAdapter(getContext(), flickrResponse.photos.photo);
-        recyclerView = findViewById(R.id.testing);
+
+        recyclerView = getActivity().findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
         recyclerView.setAdapter(photoAdapter);
     }
-
-
-
 
 
 }

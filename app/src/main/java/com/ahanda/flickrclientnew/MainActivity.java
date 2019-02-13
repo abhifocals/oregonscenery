@@ -1,5 +1,6 @@
 package com.ahanda.flickrclientnew;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 import com.ahanda.flickrclientnew.events.FlickResponseEvent;
+import com.ahanda.flickrclientnew.fragment.FragmentController;
 import com.ahanda.flickrclientnew.recyclerview.PhotoAdapter;
 import com.ahanda.flickrclientnew.rest.FlickrResponse;
 import com.ahanda.flickrclientnew.retrofit.FlickrCallback;
@@ -29,25 +31,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FlickrService service = RetrofitBuilder.newInstance().create(FlickrService.class);
-        callback = new FlickrCallback();
 
-        service.getRecentPhotos().enqueue(callback);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
-        EventBus.getDefault().register(this);
+        ft.replace(R.id.fragment, new FragmentController());
 
-    }
+        ft.commit();
 
-    @Subscribe
-    public void getResponse(FlickResponseEvent flickResponseEvent) {
-        FlickrResponse flickrResponse = flickResponseEvent.getFlickrResponse();
-
-
-        // Set-up recycler view
-        photoAdapter = new PhotoAdapter(getApplicationContext(), flickrResponse.photos.photo);
-        recyclerView = findViewById(R.id.testing);
-
-        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        recyclerView.setAdapter(photoAdapter);
     }
 }
