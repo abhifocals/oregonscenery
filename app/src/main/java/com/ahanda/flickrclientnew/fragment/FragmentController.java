@@ -22,9 +22,14 @@ import com.ahanda.flickrclientnew.retrofit.RetrofitBuilder;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class FragmentController extends Fragment {
 
     FlickrCallback callback;
+
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     PhotoAdapter photoAdapter;
 
@@ -40,7 +45,11 @@ public class FragmentController extends Fragment {
         // Registering class for EventBus
         EventBus.getDefault().register(this);
 
-        return inflater.inflate(R.layout.recycler_fragment, container, false);
+        // Butterknife Binding
+        View view = inflater.inflate(R.layout.recycler_fragment, container, false);
+        ButterKnife.bind(this, view);
+
+        return view ;
     }
 
     @Subscribe
@@ -49,8 +58,6 @@ public class FragmentController extends Fragment {
 
         // Set-up recycler view
         photoAdapter = new PhotoAdapter(getContext(), flickrResponse.photos.photo);
-
-        recyclerView = getActivity().findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
