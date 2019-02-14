@@ -4,13 +4,20 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ahanda.flickrclientnew.MainActivity;
+//import com.ahanda.flickrclientnew.R;
 import com.ahanda.flickrclientnew.R;
 import com.ahanda.flickrclientnew.events.FlickResponseEvent;
 import com.ahanda.flickrclientnew.recyclerview.PhotoAdapter;
@@ -24,6 +31,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Retrofit;
 
 public class FragmentController extends Fragment {
 
@@ -32,7 +40,6 @@ public class FragmentController extends Fragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     PhotoAdapter photoAdapter;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -49,7 +56,32 @@ public class FragmentController extends Fragment {
         View view = inflater.inflate(R.layout.recycler_fragment, container, false);
         ButterKnife.bind(this, view);
 
+
+        setHasOptionsMenu(true);
+
+
         return view ;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.search, menu);
+
+        SearchView item = (SearchView) menu.findItem(R.id.action_search).getActionView();
+
+        item.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                System.out.println("search query submit");
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                System.out.println("tap");
+                return false;
+            }
+        });
     }
 
     @Subscribe
