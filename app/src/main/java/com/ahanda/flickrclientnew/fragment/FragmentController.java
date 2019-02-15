@@ -60,7 +60,7 @@ public class FragmentController extends Fragment {
         setHasOptionsMenu(true);
 
 
-        return view ;
+        return view;
     }
 
     @Override
@@ -68,11 +68,17 @@ public class FragmentController extends Fragment {
         inflater.inflate(R.menu.search, menu);
 
         SearchView item = (SearchView) menu.findItem(R.id.action_search).getActionView();
-
+        
         item.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                System.out.println("search query submit");
+
+                // Getting Search by keyword
+                FlickrService service = RetrofitBuilder.newInstance().create(FlickrService.class);
+                callback = new FlickrCallback();
+                service.searchPhotosUsingKeyword(query).enqueue(callback);
+
+
                 return false;
             }
 
