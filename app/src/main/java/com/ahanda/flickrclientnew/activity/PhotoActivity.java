@@ -25,7 +25,7 @@ public class PhotoActivity extends AppCompatActivity {
         Photo photo = (Photo) bundle.get("currentPhoto");
         ImageView imageView = findViewById(R.id.singlePhoto);
 
-        Picasso.get().load(photo.urlz).into(imageView);
+        Picasso.get().load(photo.urlc).into(imageView);
     }
 
 

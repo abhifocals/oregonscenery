@@ -36,6 +36,6 @@ public class Photo implements Serializable {
     public String urls;
 
     @Expose
-    @SerializedName("url_z")
-    public String urlz;
+    @SerializedName("url_c")
+    public String urlc;
 }

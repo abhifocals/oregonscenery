@@ -15,7 +15,7 @@ public interface FlickrService {
 
    String KEY = "28d85d74d398b9a17a25899c8b5cb327";
 
-    @GET("rest?method=flickr.photos.getRecent&api_key=" + KEY + "&format=json&nojsoncallback=1&extras=url_s,url_z")
+    @GET("rest?method=flickr.photos.getRecent&api_key=" + KEY + "&format=json&nojsoncallback=1&extras=url_s,url_c")
     Call<FlickrResponse> getRecentPhotos();
 
     @GET("rest?method=flickr.photos.search&api_key=" + KEY + "&format=json&nojsoncallback=1&extras=url_s")
