@@ -32,7 +32,7 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public void loadImage(Photo newPhoto) {
         photo = newPhoto;
 
-        Picasso.get().load(photo.urls).into(imageView);
+        Picasso.get().load(photo.urlc).into(imageView);
     }
 
 
