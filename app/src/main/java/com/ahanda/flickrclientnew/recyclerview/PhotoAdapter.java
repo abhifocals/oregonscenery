@@ -6,15 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.ahanda.flickrclientnew.R;
 import com.ahanda.flickrclientnew.events.PhotoClickEvent;
 import com.ahanda.flickrclientnew.rest.Photo;
-import com.squareup.picasso.Picasso;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -33,7 +28,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
     @Override
     public PhotoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View view = layoutInflater.inflate(R.layout.photo_recycler, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.photo_holder, viewGroup, false);
 
         return new PhotoViewHolder(view);
     }
