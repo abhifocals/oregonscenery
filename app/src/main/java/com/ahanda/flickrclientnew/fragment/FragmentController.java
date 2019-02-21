@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,6 +34,7 @@ public class FragmentController extends Fragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     PhotoAdapter photoAdapter;
+    ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -49,10 +51,12 @@ public class FragmentController extends Fragment {
         View view = inflater.inflate(R.layout.recycler_fragment, container, false);
         ButterKnife.bind(this, view);
 
+        // Progress Bar
+        View progressBarView = inflater.inflate(R.layout.activity_main, container, false);
+        progressBar = (ProgressBar) progressBarView.findViewById(R.id.progressBar);
 
         setHasOptionsMenu(true);
-
-
+        
         return view;
     }
 
@@ -85,6 +89,8 @@ public class FragmentController extends Fragment {
 
     @Subscribe
     public void getResponse(FlickResponseEvent flickResponseEvent) {
+        progressBar.setVisibility(View.INVISIBLE);
+
         FlickrResponse flickrResponse = flickResponseEvent.getFlickrResponse();
 
         // Set-up recycler view
