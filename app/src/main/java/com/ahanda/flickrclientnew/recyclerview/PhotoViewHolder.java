@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.ahanda.flickrclientnew.R;
 import com.ahanda.flickrclientnew.activity.PhotoActivity;
-import com.ahanda.flickrclientnew.events.PhotoClickEvent;
 import com.ahanda.flickrclientnew.rest.Photo;
 import com.squareup.picasso.Picasso;
 

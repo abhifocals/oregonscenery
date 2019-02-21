@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ahanda.flickrclientnew.R;
-import com.ahanda.flickrclientnew.events.PhotoClickEvent;
 import com.ahanda.flickrclientnew.rest.Photo;
 
 import java.util.List;
@@ -17,7 +16,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
 
     LayoutInflater layoutInflater;
     List<Photo> photos;
-    PhotoClickEvent photoClickEvent;
 
     public PhotoAdapter(Context context, List<Photo> newPhotos) {
         layoutInflater = LayoutInflater.from(context);
