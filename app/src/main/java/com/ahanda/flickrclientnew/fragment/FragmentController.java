@@ -1,9 +1,9 @@
 package com.ahanda.flickrclientnew.fragment;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.SearchView;
@@ -12,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-//import com.ahanda.flickrclientnew.R;
 import com.ahanda.flickrclientnew.R;
 import com.ahanda.flickrclientnew.events.FlickResponseEvent;
 import com.ahanda.flickrclientnew.recyclerview.PhotoAdapter;
