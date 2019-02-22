@@ -55,8 +55,7 @@ public class FragmentController extends Fragment {
         ButterKnife.bind(this, view);
 
         // Progress Bar
-        View progressBarView = inflater.inflate(R.layout.activity_main, container, false);
-        progressBar = (ProgressBar) progressBarView.findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
         setHasOptionsMenu(true);
