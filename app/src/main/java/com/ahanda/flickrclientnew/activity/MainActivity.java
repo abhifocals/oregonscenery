@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.ahanda.flickrclientnew.R;
 import com.ahanda.flickrclientnew.events.FlickResponseEvent;
@@ -26,6 +28,7 @@ public class MainActivity extends Activity {
     FlickrCallback callback;
     RecyclerView recyclerView;
     PhotoAdapter photoAdapter;
+    public static ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,10 @@ public class MainActivity extends Activity {
         ft.replace(R.id.fragment, new FragmentController());
 
         ft.commit();
+
+        // Progress Bar
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
     }
 }

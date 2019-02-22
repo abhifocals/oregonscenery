@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.ahanda.flickrclientnew.R;
+import com.ahanda.flickrclientnew.activity.MainActivity;
 import com.ahanda.flickrclientnew.events.FlickResponseEvent;
 import com.ahanda.flickrclientnew.recyclerview.PhotoAdapter;
 import com.ahanda.flickrclientnew.rest.FlickrResponse;
@@ -54,12 +55,8 @@ public class FragmentController extends Fragment {
         View view = inflater.inflate(R.layout.recycler_fragment, container, false);
         ButterKnife.bind(this, view);
 
-        // Progress Bar
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
-
         setHasOptionsMenu(true);
-        
+
         return view;
     }
 
@@ -98,6 +95,9 @@ public class FragmentController extends Fragment {
         photoAdapter = new PhotoAdapter(getContext(), flickrResponse.photos.photo);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(photoAdapter);
+
+        // Getting rid of the Progress Bar
+        MainActivity.progressBar.setVisibility(View.INVISIBLE);
     }
 
 
