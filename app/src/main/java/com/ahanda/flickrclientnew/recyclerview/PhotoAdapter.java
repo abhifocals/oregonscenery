@@ -36,7 +36,11 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
         Photo photo = photos.get(i);
 
         // Giving photo to ViewHolder for onClick
-        viewHolder.loadImage(photo);
+
+        if (photo.urlc != null) {
+            viewHolder.loadImage(photo);
+        }
+        
     }
 
     @Override
