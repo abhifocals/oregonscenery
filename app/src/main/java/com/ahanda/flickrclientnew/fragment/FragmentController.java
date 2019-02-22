@@ -26,6 +26,9 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lombok.Getter;
+
+@Getter
 
 public class FragmentController extends Fragment {
 
@@ -34,7 +37,7 @@ public class FragmentController extends Fragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     PhotoAdapter photoAdapter;
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -54,6 +57,7 @@ public class FragmentController extends Fragment {
         // Progress Bar
         View progressBarView = inflater.inflate(R.layout.activity_main, container, false);
         progressBar = (ProgressBar) progressBarView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         setHasOptionsMenu(true);
         
@@ -89,15 +93,11 @@ public class FragmentController extends Fragment {
 
     @Subscribe
     public void getResponse(FlickResponseEvent flickResponseEvent) {
-        progressBar.setVisibility(View.INVISIBLE);
-
         FlickrResponse flickrResponse = flickResponseEvent.getFlickrResponse();
 
         // Set-up recycler view
         photoAdapter = new PhotoAdapter(getContext(), flickrResponse.photos.photo);
-
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
         recyclerView.setAdapter(photoAdapter);
     }
 
