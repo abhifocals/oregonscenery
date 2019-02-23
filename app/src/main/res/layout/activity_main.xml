@@ -7,14 +7,34 @@
     tools:context=".activity.MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:id="@+id/button1"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Canon Beach"
+            android:backgroundTint="#bae1ff"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_toRightOf="@+id/button1"
+            android:text="Lincoln Beach"
+            android:backgroundTint="#8b9dc3"/>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_toRightOf="@+id/button2"
+            android:text="Astoria"
+            android:backgroundTint="#7289da"/>
 
     </LinearLayout>
 
@@ -22,7 +42,10 @@
     <FrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -30,7 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical" />
-
 
     </FrameLayout>
 
