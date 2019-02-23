@@ -18,6 +18,6 @@ public interface FlickrService {
     @GET("rest?method=flickr.photos.getRecent&api_key=" + KEY + "&format=json&nojsoncallback=1&extras=url_s,url_c")
     Call<FlickrResponse> getRecentPhotos();
 
-    @GET("rest?method=flickr.photos.search&api_key=" + KEY + "&format=json&nojsoncallback=1&extras=url_s")
+    @GET("rest?method=flickr.photos.search&api_key=" + KEY + "&format=json&nojsoncallback=1&extras=url_s,url_c")
     Call<FlickrResponse> searchPhotosUsingKeyword(@Query("tags") String keyword);
 }
