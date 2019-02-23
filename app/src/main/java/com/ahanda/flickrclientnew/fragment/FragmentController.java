@@ -46,7 +46,7 @@ public class FragmentController extends Fragment {
         // Fetching Photos
         FlickrService service = RetrofitBuilder.newInstance().create(FlickrService.class);
         callback = new FlickrCallback();
-        service.getRecentPhotos().enqueue(callback);
+        service.searchPhotosUsingKeyword("canon beach").enqueue(callback);
 
         // Registering class for EventBus
         EventBus.getDefault().register(this);
