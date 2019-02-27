@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.ahanda.flickrclientnew.R;
 import com.ahanda.flickrclientnew.activity.MainActivity;
 import com.ahanda.flickrclientnew.events.FlickResponseEvent;
@@ -31,32 +33,52 @@ import lombok.Getter;
 
 @Getter
 
-public class FragmentController extends Fragment {
+public class FragmentController extends Fragment implements View.OnClickListener {
 
     FlickrCallback callback;
+    FlickrService service;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
+    @BindView((R.id.button1))
+    Button button1;
+
+    @BindView((R.id.button2))
+    Button button2;
+
+    @BindView((R.id.button3))
+    Button button3;
+
     PhotoAdapter photoAdapter;
     private ProgressBar progressBar;
     String keyword = "Oregon Beach";
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         // Fetching Photos
-        FlickrService service = RetrofitBuilder.newInstance().create(FlickrService.class);
+        service = RetrofitBuilder.newInstance().create(FlickrService.class);
         callback = new FlickrCallback();
         service.searchPhotosUsingKeyword(keyword).enqueue(callback);
 
         // Registering class for EventBus
         EventBus.getDefault().register(this);
 
-        // Butterknife Binding
+        // Inflating the Fragment Layout
         View view = inflater.inflate(R.layout.recycler_fragment, container, false);
+
+        // Butterknife Binding
         ButterKnife.bind(this, view);
 
         setHasOptionsMenu(true);
+
+        // Setting up listeners for button
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
 
         return view;
     }
@@ -66,7 +88,7 @@ public class FragmentController extends Fragment {
         inflater.inflate(R.menu.search, menu);
 
         SearchView item = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        
+
         item.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -92,7 +114,7 @@ public class FragmentController extends Fragment {
     public void getResponse(FlickResponseEvent flickResponseEvent) {
         FlickrResponse flickrResponse = flickResponseEvent.getFlickrResponse();
 
-        // Set-up recycler view
+        // Using the recycler view from Fragment Layout
         photoAdapter = new PhotoAdapter(getContext(), flickrResponse.photos.photo);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(photoAdapter);
@@ -102,4 +124,10 @@ public class FragmentController extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        keyword = ((Button) v).getText().toString();
+        service.searchPhotosUsingKeyword(keyword).enqueue(callback);
+    }
 }
+
