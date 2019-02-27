@@ -39,6 +39,7 @@ public class FragmentController extends Fragment {
     RecyclerView recyclerView;
     PhotoAdapter photoAdapter;
     private ProgressBar progressBar;
+    String keyword = "Oregon Beach";
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -46,7 +47,7 @@ public class FragmentController extends Fragment {
         // Fetching Photos
         FlickrService service = RetrofitBuilder.newInstance().create(FlickrService.class);
         callback = new FlickrCallback();
-        service.searchPhotosUsingKeyword("canon beach").enqueue(callback);
+        service.searchPhotosUsingKeyword(keyword).enqueue(callback);
 
         // Registering class for EventBus
         EventBus.getDefault().register(this);
