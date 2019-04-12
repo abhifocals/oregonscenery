@@ -30,6 +30,7 @@ import org.greenrobot.eventbus.Subscribe;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Getter;
+import retrofit2.Call;
 
 @Getter
 
@@ -37,6 +38,7 @@ public class FragmentController extends Fragment implements View.OnClickListener
 
     FlickrCallback callback;
     FlickrService service;
+    FlickrResponse flickrResponse;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -55,17 +57,21 @@ public class FragmentController extends Fragment implements View.OnClickListener
     String keyword = "Oregon Beach";
 
 
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         // Fetching Photos
         service = RetrofitBuilder.newInstance().create(FlickrService.class);
         callback = new FlickrCallback();
-        service.searchPhotosUsingKeyword(keyword).enqueue(callback);
 
-        // Registering class for EventBus
-        EventBus.getDefault().register(this);
+        if (savedInstanceState != null) {
+            flickrResponse = (FlickrResponse) savedInstanceState.getSerializable("response");
+        } else {
+            service.searchPhotosUsingKeyword(keyword).enqueue(callback);
+            // Registering class for EventBus
+            EventBus.getDefault().register(this);
+            setHasOptionsMenu(true);
+        }
 
         // Inflating the Fragment Layout
         View view = inflater.inflate(R.layout.recycler_fragment, container, false);
@@ -73,7 +79,7 @@ public class FragmentController extends Fragment implements View.OnClickListener
         // Butterknife Binding
         ButterKnife.bind(this, view);
 
-        setHasOptionsMenu(true);
+
 
         // Setting up listeners for button
         button1.setOnClickListener(this);
@@ -110,9 +116,14 @@ public class FragmentController extends Fragment implements View.OnClickListener
         });
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("response", flickrResponse);
+    }
+
     @Subscribe
     public void getResponse(FlickResponseEvent flickResponseEvent) {
-        FlickrResponse flickrResponse = flickResponseEvent.getFlickrResponse();
+        flickrResponse = flickResponseEvent.getFlickrResponse();
 
         // Using the recycler view from Fragment Layout
         photoAdapter = new PhotoAdapter(getContext(), flickrResponse.photos.photo);

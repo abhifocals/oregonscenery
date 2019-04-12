@@ -35,11 +35,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        if (savedInstanceState == null) {
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment, new FragmentController());
+            ft.commit();
+        }
 
-        ft.replace(R.id.fragment, new FragmentController());
-
-        ft.commit();
 
         // Progress Bar
         progressBar = findViewById(R.id.progressBar);
