@@ -66,6 +66,7 @@ public class FragmentController extends Fragment implements View.OnClickListener
 
         if (savedInstanceState != null) {
             flickrResponse = (FlickrResponse) savedInstanceState.getSerializable("response");
+            getResponse(null);
         } else {
             service.searchPhotosUsingKeyword(keyword).enqueue(callback);
             // Registering class for EventBus
@@ -78,8 +79,6 @@ public class FragmentController extends Fragment implements View.OnClickListener
 
         // Butterknife Binding
         ButterKnife.bind(this, view);
-
-
 
         // Setting up listeners for button
         button1.setOnClickListener(this);
@@ -123,15 +122,21 @@ public class FragmentController extends Fragment implements View.OnClickListener
 
     @Subscribe
     public void getResponse(FlickResponseEvent flickResponseEvent) {
-        flickrResponse = flickResponseEvent.getFlickrResponse();
 
-        // Using the recycler view from Fragment Layout
-        photoAdapter = new PhotoAdapter(getContext(), flickrResponse.photos.photo);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        recyclerView.setAdapter(photoAdapter);
+        if (flickResponseEvent != null) {
+            flickrResponse = flickResponseEvent.getFlickrResponse();
+        }
+
+        setUpRecyclerView();
 
         // Getting rid of the Progress Bar
         MainActivity.progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    private void setUpRecyclerView() {
+        photoAdapter = new PhotoAdapter(getContext(), flickrResponse.photos.photo);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setAdapter(photoAdapter);
     }
 
 
