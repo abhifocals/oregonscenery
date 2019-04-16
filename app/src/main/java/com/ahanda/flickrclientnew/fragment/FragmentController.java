@@ -56,7 +56,7 @@ public class FragmentController extends Fragment implements View.OnClickListener
     private ProgressBar progressBar;
     String keyword = "Oregon Beach";
 
-
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
@@ -64,15 +64,8 @@ public class FragmentController extends Fragment implements View.OnClickListener
         service = RetrofitBuilder.newInstance().create(FlickrService.class);
         callback = new FlickrCallback();
 
-        if (savedInstanceState != null) {
-            flickrResponse = (FlickrResponse) savedInstanceState.getSerializable("response");
-            getResponse(null);
-        } else {
-            service.searchPhotosUsingKeyword(keyword).enqueue(callback);
-            // Registering class for EventBus
-            EventBus.getDefault().register(this);
-            setHasOptionsMenu(true);
-        }
+        // Setting up Menu
+        setHasOptionsMenu(true);
 
         // Inflating the Fragment Layout
         View view = inflater.inflate(R.layout.recycler_fragment, container, false);
@@ -86,6 +79,20 @@ public class FragmentController extends Fragment implements View.OnClickListener
         button3.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            flickrResponse = (FlickrResponse) savedInstanceState.getSerializable("response");
+            getResponse(null);
+        } else {
+            service.searchPhotosUsingKeyword(keyword).enqueue(callback);
+
+            // Registering class for EventBus
+            EventBus.getDefault().register(this);
+            setHasOptionsMenu(true);
+        }
     }
 
     @Override
@@ -138,8 +145,7 @@ public class FragmentController extends Fragment implements View.OnClickListener
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(photoAdapter);
     }
-
-
+    
     @Override
     public void onClick(View v) {
         keyword = ((Button) v).getText().toString();
