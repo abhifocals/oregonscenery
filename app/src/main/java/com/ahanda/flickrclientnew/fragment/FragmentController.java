@@ -63,6 +63,11 @@ public class FragmentController extends Fragment implements View.OnClickListener
         // Fetching Photos
         service = RetrofitBuilder.newInstance().create(FlickrService.class);
         callback = new FlickrCallback();
+        service.searchPhotosUsingKeyword(keyword).enqueue(callback);
+
+        // Registering class for EventBus
+        EventBus.getDefault().register(this);
+        setHasOptionsMenu(true);
 
         // Setting up Menu
         setHasOptionsMenu(true);
@@ -79,20 +84,6 @@ public class FragmentController extends Fragment implements View.OnClickListener
         button3.setOnClickListener(this);
 
         return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            flickrResponse = (FlickrResponse) savedInstanceState.getSerializable("response");
-            getResponse(null);
-        } else {
-            service.searchPhotosUsingKeyword(keyword).enqueue(callback);
-
-            // Registering class for EventBus
-            EventBus.getDefault().register(this);
-            setHasOptionsMenu(true);
-        }
     }
 
     @Override
@@ -122,17 +113,10 @@ public class FragmentController extends Fragment implements View.OnClickListener
         });
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("response", flickrResponse);
-    }
-
     @Subscribe
     public void getResponse(FlickResponseEvent flickResponseEvent) {
 
-        if (flickResponseEvent != null) {
-            flickrResponse = flickResponseEvent.getFlickrResponse();
-        }
+        flickrResponse = flickResponseEvent.getFlickrResponse();
 
         setUpRecyclerView();
 
@@ -145,7 +129,7 @@ public class FragmentController extends Fragment implements View.OnClickListener
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(photoAdapter);
     }
-    
+
     @Override
     public void onClick(View v) {
         keyword = ((Button) v).getText().toString();
