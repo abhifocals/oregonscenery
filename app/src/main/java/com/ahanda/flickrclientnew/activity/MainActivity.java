@@ -26,7 +26,6 @@ import org.greenrobot.eventbus.Subscribe;
 public class MainActivity extends Activity {
 
     FlickrCallback callback;
-    RecyclerView recyclerView;
     public static ProgressBar progressBar;
 
     @Override
