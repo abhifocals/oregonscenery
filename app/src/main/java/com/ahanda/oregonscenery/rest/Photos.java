@@ -1,13 +1,10 @@
-package com.ahanda.flickrclientnew.rest;
+package com.ahanda.oregonscenery.rest;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
-
-import lombok.Getter;
-import lombok.Setter;
 
 public class Photos implements Serializable {
 

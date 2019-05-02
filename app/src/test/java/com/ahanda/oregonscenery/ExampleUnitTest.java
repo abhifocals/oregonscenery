@@ -1,4 +1,4 @@
-package com.ahanda.flickrclientnew;
+package com.ahanda.oregonscenery;
 
 import org.junit.Test;
 

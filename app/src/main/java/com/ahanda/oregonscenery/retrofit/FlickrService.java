@@ -1,14 +1,9 @@
-package com.ahanda.flickrclientnew.retrofit;
+package com.ahanda.oregonscenery.retrofit;
 
-import com.ahanda.flickrclientnew.rest.FlickrResponse;
-import com.ahanda.flickrclientnew.rest.Photo;
-import com.ahanda.flickrclientnew.rest.Photos;
-
-import java.util.List;
+import com.ahanda.oregonscenery.rest.FlickrResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface FlickrService {

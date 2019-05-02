@@ -1,4 +1,4 @@
-package com.ahanda.flickrclientnew.recyclerview;
+package com.ahanda.oregonscenery.recyclerview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ahanda.flickrclientnew.R;
-import com.ahanda.flickrclientnew.rest.Photo;
+import com.ahanda.oregonscenery.R;
+import com.ahanda.oregonscenery.rest.Photo;
 
 import java.util.List;
 

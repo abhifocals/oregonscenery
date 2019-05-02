@@ -1,4 +1,4 @@
-package com.ahanda.flickrclientnew.fragment;
+package com.ahanda.oregonscenery.fragment;
 
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -16,14 +16,14 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ahanda.flickrclientnew.R;
-import com.ahanda.flickrclientnew.activity.MainActivity;
-import com.ahanda.flickrclientnew.events.FlickResponseEvent;
-import com.ahanda.flickrclientnew.recyclerview.PhotoAdapter;
-import com.ahanda.flickrclientnew.rest.FlickrResponse;
-import com.ahanda.flickrclientnew.retrofit.FlickrCallback;
-import com.ahanda.flickrclientnew.retrofit.FlickrService;
-import com.ahanda.flickrclientnew.retrofit.RetrofitBuilder;
+import com.ahanda.oregonscenery.R;
+import com.ahanda.oregonscenery.activity.MainActivity;
+import com.ahanda.oregonscenery.events.FlickResponseEvent;
+import com.ahanda.oregonscenery.recyclerview.PhotoAdapter;
+import com.ahanda.oregonscenery.rest.FlickrResponse;
+import com.ahanda.oregonscenery.retrofit.FlickrCallback;
+import com.ahanda.oregonscenery.retrofit.FlickrService;
+import com.ahanda.oregonscenery.retrofit.RetrofitBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -31,7 +31,6 @@ import org.greenrobot.eventbus.Subscribe;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lombok.Getter;
-import retrofit2.Call;
 
 @Getter
 

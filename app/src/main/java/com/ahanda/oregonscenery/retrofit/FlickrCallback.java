@@ -1,19 +1,11 @@
-package com.ahanda.flickrclientnew.retrofit;
+package com.ahanda.oregonscenery.retrofit;
 
 import android.util.Log;
 
-import com.ahanda.flickrclientnew.events.FlickResponseEvent;
-import com.ahanda.flickrclientnew.rest.FlickrResponse;
-import com.ahanda.flickrclientnew.rest.Photo;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.ahanda.oregonscenery.events.FlickResponseEvent;
+import com.ahanda.oregonscenery.rest.FlickrResponse;
 
 import org.greenrobot.eventbus.EventBus;
-import org.json.JSONObject;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -1,15 +1,13 @@
-package com.ahanda.flickrclientnew.activity;
+package com.ahanda.oregonscenery.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.ahanda.flickrclientnew.R;
-import com.ahanda.flickrclientnew.rest.Photo;
+import com.ahanda.oregonscenery.R;
+import com.ahanda.oregonscenery.rest.Photo;
 import com.squareup.picasso.Picasso;
 
 public class PhotoActivity extends Activity {

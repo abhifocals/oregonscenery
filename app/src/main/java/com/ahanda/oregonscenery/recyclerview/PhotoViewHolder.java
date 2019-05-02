@@ -1,19 +1,14 @@
-package com.ahanda.flickrclientnew.recyclerview;
+package com.ahanda.oregonscenery.recyclerview;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.ahanda.flickrclientnew.R;
-import com.ahanda.flickrclientnew.activity.PhotoActivity;
-import com.ahanda.flickrclientnew.rest.Photo;
+import com.ahanda.oregonscenery.R;
+import com.ahanda.oregonscenery.activity.PhotoActivity;
+import com.ahanda.oregonscenery.rest.Photo;
 import com.squareup.picasso.Picasso;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 public class PhotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

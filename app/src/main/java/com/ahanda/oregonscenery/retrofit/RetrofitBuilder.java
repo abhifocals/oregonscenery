@@ -1,7 +1,4 @@
-package com.ahanda.flickrclientnew.retrofit;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+package com.ahanda.oregonscenery.retrofit;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

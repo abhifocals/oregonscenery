@@ -1,4 +1,4 @@
-package com.ahanda.flickrclientnew.rest;
+package com.ahanda.oregonscenery.rest;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

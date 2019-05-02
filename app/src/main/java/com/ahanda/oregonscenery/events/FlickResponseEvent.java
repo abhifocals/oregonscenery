@@ -1,6 +1,6 @@
-package com.ahanda.flickrclientnew.events;
+package com.ahanda.oregonscenery.events;
 
-import com.ahanda.flickrclientnew.rest.FlickrResponse;
+import com.ahanda.oregonscenery.rest.FlickrResponse;
 
 import lombok.Getter;
 

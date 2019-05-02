@@ -1,4 +1,4 @@
-package com.ahanda.flickrclientnew;
+package com.ahanda.oregonscenery;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
