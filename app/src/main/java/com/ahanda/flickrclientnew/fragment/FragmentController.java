@@ -1,5 +1,6 @@
 package com.ahanda.flickrclientnew.fragment;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -82,6 +83,11 @@ public class FragmentController extends Fragment implements View.OnClickListener
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
+
+
+        // Set Title
+        ActionBar actionBar = getActivity().getActionBar();
+        actionBar.setTitle(R.string.title);
 
         return view;
     }
